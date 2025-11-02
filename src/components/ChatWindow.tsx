@@ -30,7 +30,7 @@ export default function ChatWindow() {
         <input
           value={input}
           onChange={(e) => setInput(e.target.value)}
-          placeholder="Digite sua pergunta..."
+          placeholder="Enter your question..."
           disabled={!currentSession || sending}
           className="flex-1 rounded-xl bg-neutral-900 border border-neutral-800 px-4 py-3 outline-none focus:border-neutral-600"
         />
@@ -39,7 +39,7 @@ export default function ChatWindow() {
           disabled={!input.trim() || sending}
           className="rounded-xl bg-blue-600 px-5 py-3 font-medium disabled:opacity-50"
         >
-          {sending ? "..." : "Enviar"}
+          {sending ? "..." : "Send"}
         </button>
       </form>
     </div>

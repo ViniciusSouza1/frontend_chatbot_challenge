@@ -9,9 +9,9 @@ export default function Sidebar() {
         onClick={newSession}
         className="w-full rounded-lg bg-neutral-200 text-neutral-900 py-2 font-medium hover:bg-white"
       >
-        + Nova conversa
+        + New chat
       </button>
-      <div className="text-sm text-neutral-400 uppercase tracking-wide">Suas conversas</div>
+      <div className="text-sm text-neutral-400 uppercase tracking-wide">Your chats</div>
       <ul className="flex-1 overflow-auto space-y-2">
         {sessionList.map((id) => (
           <li key={id}>
@@ -26,7 +26,7 @@ export default function Sidebar() {
           </li>
         ))}
         {sessionList.length === 0 && (
-          <li className="text-neutral-500 text-sm">Nenhuma conversa salva.</li>
+          <li className="text-neutral-500 text-sm">No chats saved.</li>
         )}
       </ul>
     </aside>
