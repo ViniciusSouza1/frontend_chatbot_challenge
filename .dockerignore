@@ -1,0 +1,35 @@
+# Node / npm
+node_modules
+npm-debug.log
+package-lock.json
+
+# Build output (we rebuild inside the container)
+dist
+build
+
+# Local and IDE files
+.DS_Store
+.vscode
+.idea
+*.log
+*.tmp
+*.swp
+
+# Git and environment
+.git
+.gitignore
+.env
+.env.local
+.env.development
+.env.production
+.env.test
+
+# Docker itself
+Dockerfile
+docker-compose.yml
+
+# OS / cache files
+Thumbs.db
+.cache
+*.bak
+*.old
