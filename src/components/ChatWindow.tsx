@@ -18,30 +18,42 @@ export default function ChatWindow() {
     setInput("")
   }
 
-  if (loading) return <div className="flex-1 grid place-items-center">Carregando…</div>
-
+  // right-side wrapper: flex-col + min-h-0
   return (
-    <div className="flex-1 flex flex-col">
-      <div className="flex-1 overflow-auto p-6 space-y-4">
-        {messages.map((m) => <MessageBubble key={m.id} msg={m} />)}
-        <div ref={bottomRef} />
-      </div>
-      <form onSubmit={handleSubmit} className="border-t border-neutral-800 p-4 flex gap-3">
-        <input
-          value={input}
-          onChange={(e) => setInput(e.target.value)}
-          placeholder="Enter your question..."
-          disabled={!currentSession || sending}
-          className="flex-1 rounded-xl bg-neutral-900 border border-neutral-800 px-4 py-3 outline-none focus:border-neutral-600"
-        />
-        <button
-          type="submit"
-          disabled={!input.trim() || sending}
-          className="rounded-xl bg-blue-600 px-5 py-3 font-medium disabled:opacity-50"
-        >
-          {sending ? "..." : "Send"}
-        </button>
-      </form>
+    <div className="flex-1 flex flex-col min-h-0">
+      {loading ? (
+        <div className="flex-1 grid place-items-center text-neutral-400">Loading…</div>
+      ) : !currentSession ? (
+        <div className="flex-1 grid place-items-center text-neutral-400">
+          Click on <span className="mx-1 px-2 py-1 rounded bg-neutral-800">+ New chat</span> to start.
+        </div>
+      ) : (
+        <>
+          {/* message list with internal scroll */}
+          <div className="flex-1 overflow-y-auto p-6 space-y-4">
+            {messages.map((m) => <MessageBubble key={m.id} msg={m} />)}
+            <div ref={bottomRef} />
+          </div>
+
+          {/* fixed composer at the bottom */}
+          <form onSubmit={handleSubmit} className="border-t border-neutral-800 p-4 flex gap-3">
+            <input
+              value={input}
+              onChange={(e) => setInput(e.target.value)}
+              placeholder="Type your question..."
+              disabled={!currentSession || sending}
+              className="flex-1 rounded-xl bg-neutral-900 border border-neutral-800 px-4 py-3 outline-none focus:border-neutral-600"
+            />
+            <button
+              type="submit"
+              disabled={!input.trim() || sending}
+              className="rounded-xl bg-blue-600 px-5 py-3 font-medium disabled:opacity-50"
+            >
+              {sending ? "..." : "Send"}
+            </button>
+          </form>
+        </>
+      )}
     </div>
   )
 }
